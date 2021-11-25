@@ -1,0 +1,6 @@
+include (
+    "graphql-server",
+    "graphql-client",
+    "graphql-lib-client",
+    "model-commons"
+)

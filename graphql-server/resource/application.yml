@@ -1,0 +1,36 @@
+server:
+    port: ${GQL_SERVER_PORT}
+
+spring:
+    main:
+        allow-bean-definition-overriding: true
+
+graphql:
+    servlet:
+        enabled: true
+        mapping: /graphql
+        cors-enabled: true
+        cors:
+            allowed-origins: http://some.domain.com
+            allowed-methods: GET, HEAD, POST
+        #exception-handlers-enabled: true
+        #context-setting: PER_REQUEST_WITH_INSTRUMENTATION
+        async-mode-enabled: true
+
+    altair:
+        enabled: true
+        mapping: /altair
+        subscriptions:
+            timeout: 30
+            reconnect: false
+        static:
+            base-path: /
+        page-title: Altair
+        cdn:
+            enabled: false
+            version: 4.0.2
+        options:
+            endpoint-url: /graphql
+            subscriptions-endpoint: /subscriptions
+            initial-settings:
+                theme: dracula

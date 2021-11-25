@@ -1,0 +1,23 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "graphql-server",
+            "console": "internalConsole",
+            "request": "launch",
+            "envFile": "${workspaceFolder}/local.env",
+            "mainClass": "example.graphqlserver.Application",
+            "projectName": "graphql-server"
+        },
+        {
+            "type": "java",
+            "name": "graphql-client",
+            "console": "internalConsole",
+            "envFile": "${workspaceFolder}/local.env",
+            "request": "launch",
+            "mainClass": "example.graphqlclient.Application",
+            "projectName": "graphql-client"
+        }
+    ]
+}

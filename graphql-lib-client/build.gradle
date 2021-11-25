@@ -1,0 +1,17 @@
+
+jar {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE 
+    from { configurations.compileClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
+}
+
+dependencies {
+	implementation 'org.springframework:spring-web:5.3.13'
+    implementation 'org.springframework.boot:spring-boot-starter-logging:2.6.0'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.0.1'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.12.4'
+
+}
+
+test {
+	useJUnitPlatform()
+}

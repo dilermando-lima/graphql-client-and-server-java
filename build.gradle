@@ -1,0 +1,19 @@
+subprojects {
+ 	apply plugin: "java"
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+
+    group="example"
+    sourceCompatibility=11
+    targetCompatibility=11
+
+    sourceSets {
+        main.java.srcDirs = ["src"]
+        main.resources.srcDirs = ["resource"]
+        test.java.srcDirs = ["test"]
+    }
+
+}
