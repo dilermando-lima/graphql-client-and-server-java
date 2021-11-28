@@ -1,5 +1,11 @@
 {
     "version": "0.2.0",
+    "compounds": [
+        {
+            "name": "graphql_server_client",
+            "configurations": ["graphql-server","graphql-client"],
+        }
+    ],
     "configurations": [
         {
             "type": "java",

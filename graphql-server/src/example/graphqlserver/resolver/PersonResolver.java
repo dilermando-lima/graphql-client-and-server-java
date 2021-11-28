@@ -1,4 +1,4 @@
-package example.graphqlserver;
+package example.graphqlserver.resolver;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -16,7 +16,8 @@ public class PersonResolver implements GraphQLQueryResolver {
 
     static final Logger LOGGER = LoggerFactory.getLogger(PersonResolver.class);
 
-    public Person getPersonById(Long id){
+    public Person getPersonById(Long id) {
+
         LOGGER.debug("Calling getPersonById() : id = {}", id);
         return new Person(id, "name " + id, LocalDate.now());
     }

@@ -1,7 +1,9 @@
+scalar Date
+
 type Person {
     id: Int
     name: String
-    dateBirth: String
+    dateBirth: Date
 }
 
 

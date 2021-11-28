@@ -4,6 +4,12 @@ server:
 spring:
     main:
         allow-bean-definition-overriding: true
+    mvc:
+        throw-exception-if-no-handler-found: true
+    web:
+        resources:
+            add-mappings: false
+
 
 graphql:
     servlet:
@@ -11,11 +17,14 @@ graphql:
         mapping: /graphql
         cors-enabled: true
         cors:
-            allowed-origins: http://some.domain.com
+            allowed-origins: "*"
             allowed-methods: GET, HEAD, POST
-        #exception-handlers-enabled: true
+        exception-handlers-enabled: true
         #context-setting: PER_REQUEST_WITH_INSTRUMENTATION
         async-mode-enabled: true
+        async-timeout: 60000
+
+    extended-scalars: Date
 
     altair:
         enabled: true
