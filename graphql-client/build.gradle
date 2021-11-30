@@ -4,7 +4,6 @@ plugins {
 }
 
 dependencies {
-	implementation project(":model-commons")
 	implementation project(":graphql-lib-client")
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'

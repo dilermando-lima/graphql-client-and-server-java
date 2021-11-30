@@ -1,0 +1,35 @@
+
+
+
+type Contact {
+    id: String
+    email: String
+    phone: String
+    person: Person
+}
+
+input ContactInput {
+
+    id: String
+    email: String
+    phone: String
+    person: PersonInput
+}
+
+
+input ContactFilter {
+    pageSize: Int
+    pageNum: Int
+    containsEmail: String
+    containsPhone: String
+}
+
+extend type Mutation {
+    createContact(contact: ContactInput): Contact
+    alterContact(contact: ContactInput): Contact
+}
+
+extend type Query {
+    getContactById(id: String): Contact
+    listContact(filter: ContactFilter): [Contact]
+}

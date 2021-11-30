@@ -1,4 +1,4 @@
-package example.graphqlclient;
+package example.graphqlclient.controller;
 
 import java.util.List;
 
@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import example.model.Person;
+import example.graphqlclient.dto.Person;
+import example.graphqlclient.integration.GraphPersonClient;
+
 
 @Controller
 @RequestMapping("/person")

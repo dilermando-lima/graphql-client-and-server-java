@@ -1,4 +1,4 @@
-package example.graphqlclient;
+package example.graphqlclient.integration;
 
 import java.util.List;
 
@@ -9,7 +9,8 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Component;
 
 import example.graphlibclient.AbstractGraphQlClient;
-import example.model.Person;
+import example.graphqlclient.dto.Person;
+
 
 @Component
 public class GraphPersonClient extends AbstractGraphQlClient {

@@ -2,16 +2,38 @@ server:
     port: ${GQL_SERVER_PORT}
 
 spring:
-    main:
-        allow-bean-definition-overriding: true
     mvc:
         throw-exception-if-no-handler-found: true
     web:
         resources:
-            add-mappings: false
+            # turn 'add-mappings: false' in PRD
+            add-mappings: true
+    main:
+        allow-bean-definition-overriding: true
+
+
+    datasource:
+        username: sa
+        url: jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;DATABASE_TO_UPPER=false
+        driverClassName: org.h2.Driver
+        password: ""
+
+    h2:
+        console:
+            enabled: true
+            path: /h2-console
+    jpa:
+        database-platform: org.hibernate.dialect.H2Dialect
+
+
 
 
 graphql:
+    
+    tools:
+        schema-location-pattern: '**/*.graphqls'
+
+        
     servlet:
         enabled: true
         mapping: /graphql
@@ -21,19 +43,15 @@ graphql:
             allowed-methods: GET, HEAD, POST
         exception-handlers-enabled: true
         #context-setting: PER_REQUEST_WITH_INSTRUMENTATION
-        async-mode-enabled: true
-        async-timeout: 60000
+        async:
+            timeout: 60000
+            enabled: true
 
     extended-scalars: Date
 
     altair:
         enabled: true
         mapping: /altair
-        subscriptions:
-            timeout: 30
-            reconnect: false
-        static:
-            base-path: /
         page-title: Altair
         cdn:
             enabled: false
@@ -43,3 +61,7 @@ graphql:
             subscriptions-endpoint: /subscriptions
             initial-settings:
                 theme: dracula
+
+
+
+

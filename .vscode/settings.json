@@ -5,6 +5,8 @@
         ".gradle": true,
         "**/build": true,
         "**/bin" : true,
+        // "graphql-client":true,
+        // "graphql-lib-client":true
     }
 }
 

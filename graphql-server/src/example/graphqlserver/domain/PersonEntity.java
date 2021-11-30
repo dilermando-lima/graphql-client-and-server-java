@@ -1,28 +1,21 @@
-package example.model;
+package example.graphqlserver.domain;
 
 import java.time.LocalDate;
 
-public class Person {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "person")
+public class PersonEntity extends IdentityPK{
     
-    private Long id;
+    @Column(name = "name", nullable = false)
     private String name;
+
+    @Column(name = "date_birth")
     private LocalDate dateBirth;
 
-    public Person() {
-    }
-
-    public Person(Long id, String name, LocalDate dateBirth) {
-        this.id = id;
-        this.name = name;
-        this.dateBirth = dateBirth;
-    }
-    
-    public Long getId() {
-        return id;
-    }
-    public void setId(Long id) {
-        this.id = id;
-    }
     public String getName() {
         return name;
     }

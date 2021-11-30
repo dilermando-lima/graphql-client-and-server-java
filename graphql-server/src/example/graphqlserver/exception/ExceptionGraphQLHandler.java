@@ -42,7 +42,7 @@ public class ExceptionGraphQLHandler{
         BIND(BindException.class,HttpStatus.BAD_REQUEST),
         MISSING_SERVLET_REQUEST_PARAMETER(MissingServletRequestParameterException.class,HttpStatus.BAD_REQUEST),
         SERVLET_REQUEST_BINDING(ServletRequestBindingException.class,HttpStatus.BAD_REQUEST),
-        NO_HANDLER_FOUND(NoHandlerFoundException.class,HttpStatus.INTERNAL_SERVER_ERROR),
+        NO_HANDLER_FOUND(NoHandlerFoundException.class,HttpStatus.NOT_FOUND),
         ASYNC_REQUEST_TIMEOUT(AsyncRequestTimeoutException.class,HttpStatus.SERVICE_UNAVAILABLE),
         ;
 
@@ -69,17 +69,16 @@ public class ExceptionGraphQLHandler{
 
     
     @ExceptionHandler({Throwable.class})
-    public ApiGraphQlException handleGraphQlException(Throwable ex) {
-        if( ex instanceof ApiGraphQlException ) 
-            return (ApiGraphQlException) ex;
+    public ApiReturnGraphQLError handleGraphQlException(Throwable ex) {
+        if( ex instanceof ApiGraphQLException ) 
+            return new ApiReturnGraphQLError((ApiGraphQLException) ex);
         else
-            return  new ApiGraphQlException( HttpStatusOnExceptionEnum.getHttpStatusByException(ex), ex);
+            return  new ApiReturnGraphQLError(new ApiGraphQLException( HttpStatusOnExceptionEnum.getHttpStatusByException(ex), ex.getMessage()));
     }  
 
-
-    @ExceptionHandler({ApiGraphQlException.class})
-    public ResponseEntity<ApiGraphQlException> handleApiGraphQlExceptionException(ApiGraphQlException ex) {
-       return ResponseEntity.ok(ex);
+    @ExceptionHandler({ApiGraphQLException.class})
+    public ResponseEntity<ApiReturnGraphQLError> handleApiGraphQlExceptionException(ApiGraphQLException ex) {
+       return ResponseEntity.ok( new ApiReturnGraphQLError(ex));
     }  
 
     @ExceptionHandler({
@@ -100,9 +99,9 @@ public class ExceptionGraphQLHandler{
         NoHandlerFoundException.class,
         AsyncRequestTimeoutException.class
     })
-    public ResponseEntity<ApiGraphQlException> handleException(Throwable ex) {
+    public ResponseEntity<ApiReturnGraphQLError> handleException(Throwable ex) {
        return ResponseEntity.ok(
-                new ApiGraphQlException(HttpStatusOnExceptionEnum.getHttpStatusByException(ex), ex)
+                new ApiReturnGraphQLError(new ApiGraphQLException( HttpStatusOnExceptionEnum.getHttpStatusByException(ex), ex.getMessage()))
             );
        
     }  

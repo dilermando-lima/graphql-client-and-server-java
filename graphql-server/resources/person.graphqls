@@ -1,0 +1,34 @@
+
+
+type Person {
+    id: String
+    name: String
+    dateBirth: Date
+}
+
+input PersonInput{
+    id: String
+    name: String
+    dateBirth: Date
+}
+
+input PersonFilter  {
+
+    pageSize: Int
+    pageNum: Int
+    containsName: String
+    equalsName: String
+    moreThanDateBirth: Date
+    lessThanDateBirth: Date
+
+}
+
+extend type Mutation {
+    createPerson(person: PersonInput): Person
+    alterPerson(person: PersonInput): Person
+}
+
+extend type Query {
+    getPersonById(id: String): Person
+    listPerson(filter: PersonFilter): [Person]
+}

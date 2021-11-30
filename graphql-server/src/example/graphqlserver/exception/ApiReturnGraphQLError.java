@@ -11,23 +11,14 @@ import graphql.ErrorType;
 import graphql.GraphQLError;
 import graphql.language.SourceLocation;
 
-public class ApiGraphQlException extends RuntimeException implements GraphQLError{
+public class ApiReturnGraphQLError implements GraphQLError{
 
     private final HttpStatus httpStatus;
+    private final String message;
 
-    public ApiGraphQlException(HttpStatus httpStatus, Throwable throwable) {
-        super(throwable);
-        this.httpStatus = httpStatus;
-    }
-
-    public ApiGraphQlException(Throwable throwable) {
-        super(throwable);
-        this.httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
-    }
-
-    public ApiGraphQlException(HttpStatus httpStatus, String message) {
-        super(new Throwable(message) );
-        this.httpStatus = httpStatus;
+    public ApiReturnGraphQLError(ApiGraphQLException apiGraphQlException) {
+        this.httpStatus = apiGraphQlException.getHttpStatus();
+        this.message = apiGraphQlException.getMessage();
     }
 
     @Override
@@ -43,6 +34,11 @@ public class ApiGraphQlException extends RuntimeException implements GraphQLErro
     @Override
     public List<SourceLocation> getLocations() {
         return Collections.emptyList();
+    }
+
+    @Override
+    public String getMessage() {
+        return this.message;
     }
     
 }
